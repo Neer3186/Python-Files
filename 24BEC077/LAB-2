@@ -1,0 +1,162 @@
+#Lab-2
+from math import sqrt, pow
+
+# 1. Compare two numbers
+def compare_two():
+    a = int(input("\nEnter first number: "))
+    b = int(input("Enter second number: "))
+    if a > b:
+        print("Largest:", a, "Smallest:", b)
+    elif b > a:
+        print("Largest:", b, "Smallest:", a)
+    else:
+        print("Both are equal")
+
+# 2. Compare three numbers
+def compare_three():
+    a = int(input("\nEnter first number: "))
+    b = int(input("Enter second number: "))
+    c = int(input("Enter third number: "))
+    print("Largest:", max(a, b, c), "Smallest:", min(a, b, c))
+
+# 3. Odd or Even
+def odd_even():
+    n = int(input("\nEnter a number: "))
+    print("Even" if n % 2 == 0 else "Odd")
+
+# 4. Divisible by 10
+def divisible_by_10():
+    n = int(input("\nEnter a number: "))
+    print("Divisible by 10" if n % 10 == 0 else "Not divisible by 10")
+
+# 5. Minor or Major
+def age_check():
+    age = int(input("\nEnter age: "))
+    print("Minor" if age < 18 else "Major")
+
+# 6. Number of digits
+def count_digits():
+    n = int(input("\nEnter a number: "))
+    print("Number of digits:", len(str(abs(n))))
+
+# 7. Leap year check
+def is_leap_year():
+    year = int(input("\nEnter a year: "))
+    if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
+        print("Leap Year")
+    else:
+        print("Not a Leap Year")
+
+# 8. Triangle validity
+def valid_triangle():
+    a1 = int(input("\nEnter angle 1: "))
+    a2 = int(input("Enter angle 2: "))
+    a3 = int(input("Enter angle 3: "))
+    print("Valid Triangle" if a1 + a2 + a3 == 180 else "Invalid Triangle")
+
+# 9. Absolute value
+def absolute_val():
+    n = int(input("\nEnter a number: "))
+    print("Absolute value:", abs(n))
+
+# 10. Rectangle area vs perimeter
+def rectangle_area_perimeter():
+    l = int(input("\nEnter length: "))
+    b = int(input("Enter breadth: "))
+    area = l * b
+    perimeter = 2 * (l + b)
+    if area > perimeter:
+        print("Area is greater")
+    else:
+        print("Perimeter is greater or equal")
+
+# 11. Collinearity of points
+def are_points_collinear():
+    x1, y1 = map(int, input("\nEnter x1 y1: ").split())
+    x2, y2 = map(int, input("Enter x2 y2: ").split())
+    x3, y3 = map(int, input("Enter x3 y3: ").split())
+    if (y2 - y1)(x3 - x2) == (y3 - y2)(x2 - x1):
+        print("Points are collinear")
+    else:
+        print("Points are not collinear")
+
+# 12. Point position w.r.t circle
+def point_circle():
+    xc, yc = map(int, input("\nEnter center coordinates (x y): ").split())
+    r = float(input("Enter radius: "))
+    xp, yp = map(int, input("Enter point coordinates (x y): ").split())
+    d = sqrt(pow(xp - xc, 2) + pow(yp - yc, 2))
+    if d < r:
+        print("Point is inside the circle")
+    elif d == r:
+        print("Point is on the circle")
+    else:
+        print("Point is outside the circle")
+
+# 13. Number to word (0–19)
+def num_to_word():
+    words = ["zero", "one", "two", "three", "four", "five", "six", "seven",
+             "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen",
+             "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"]
+    n = int(input("\nEnter a number (0-19): "))
+    if 0 <= n <= 19:
+        print("In words:", words[n])
+    else:
+        print("Out of range")
+
+# 14. Marks, total, average, result, grades
+def subject_result():
+    def get_grade(m):
+        if m == "Absent":
+            return "NA"
+        elif m <= 39:
+            return "F"
+        elif m <= 44:
+            return "P"
+        elif m <= 49:
+            return "C"
+        elif m <= 54:
+            return "B"
+        elif m <= 59:
+            return "B+"
+        elif m <= 69:
+            return "A"
+        elif m <= 79:
+            return "A+"
+        else:
+            return "O"
+
+    print("\nEnter marks (or 'Absent') for 3 subjects:")
+    marks = []
+    for i in range(1, 4):
+        val = input(f"Subject {i}: ")
+        if val.lower() == "absent":
+            marks.append("Absent")
+        else:
+            marks.append(int(val))
+
+    fail = any(m != "Absent" and m <= 39 for m in marks)
+    total = sum(m for m in marks if m != "Absent")
+    avg = total / len([m for m in marks if m != "Absent"])
+    print("Total:", total, "Average:", round(avg, 2))
+    print("Result:", "Fail" if fail else "Pass")
+    print("Grades:", [get_grade(m) for m in marks])
+
+
+def run_all():
+    compare_two()
+    compare_three()
+    odd_even()
+    divisible_by_10()
+    age_check()
+    count_digits()
+    is_leap_year()
+    valid_triangle()
+    absolute_val()
+    rectangle_area_perimeter()
+    are_points_collinear()
+    point_circle()
+    num_to_word()
+    subject_result()
+
+run_all()
